@@ -20,16 +20,18 @@ import { Button } from "../ui/sideBarButton";
 
 const SideBarMenu = () => {
     const pTagClass =
-        "text-center text-xs text-zinc-500 font-normal font-['SF Pro']";
+        "text-center text-xs text-zinc-500 font-[400] font-[sfpro-regular] leading-[14.32px]";
 
     return (
-        <div className="w-24 h-[1080px] px-4 py-6 bg-white border-r border-gray-200 flex-col justify-start items-center gap-10 inline-flex">
+        <div className="w-24 h-[1080px] px-4 py-6 border-r border-gray-200 flex-col justify-start items-center gap-10 inline-flex">
             <GroupSvg />
 
             <div className="w-16 grow basis-0 flex-col justify-start items-start gap-4 flex">
                 <Button>
                     <LayoutwebSvg />
-                    <p className={`${pTagClass} font-medium font-['Inter']`}>
+                    <p
+                        className={`${pTagClass} text-[12px] font-[500] font-['Inter']`}
+                    >
                         Dashboard
                     </p>
                 </Button>
@@ -39,9 +41,7 @@ const SideBarMenu = () => {
                 </Button>
                 <Button>
                     <DocSvg />
-                    <p className="text-center text-xs font-normal font-['SF Pro'] text-blue-600">
-                        Invoices
-                    </p>
+                    <p className="text-xs text-blue-600">Invoices</p>
                 </Button>
                 <Button>
                     <UsersSvg />
@@ -71,7 +71,7 @@ const SideBarMenu = () => {
                     <FileSettingSvg />
                     <p className={pTagClass}>Config</p>
                 </Button>
-                <Button variant="ghost">
+                <Button>
                     <FileUploadSvg />
                     <p className={pTagClass}>Up Center</p>
                 </Button>
