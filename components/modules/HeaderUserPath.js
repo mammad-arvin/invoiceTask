@@ -7,8 +7,7 @@ import EllipsSvg from "../icons/EllipsSvg";
 import Link from "next/link";
 
 const HeaderUserPath = () => {
-    const gonePathStyle =
-        "text-neutral-400 text-sm font-normal font-['SF Pro']";
+    const gonePathStyle = "text-neutral-400 text-sm font-[400]";
     return (
         <div className="w-full h-12 p-2 border-b border-gray-200 flex justify-start items-center gap-6">
             <div className="grow h-8  flex items-center gap-2">
@@ -18,7 +17,7 @@ const HeaderUserPath = () => {
                             <ArrowLeftSvg />
                         </div>
                     </Link>
-                    <div className="text-gray-950 text-sm font-['SF Pro']">
+                    <div className="text-gray-950 text-sm font-[510]">
                         New Invoice
                     </div>
                 </div>
@@ -36,7 +35,7 @@ const HeaderUserPath = () => {
 
                     <AngelRightSvg />
 
-                    <div className="text-blue-600 text-sm font-normal font-['SF Pro']">
+                    <div className="text-blue-600 text-sm font-[400] ">
                         New invoice page
                     </div>
                 </div>

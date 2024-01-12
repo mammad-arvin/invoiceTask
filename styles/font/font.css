@@ -1,12 +1,4 @@
 @font-face {
-    font-family: sfpro-regular;
-    src: url("./SFPRODISPLAYREGULAR.OTF");
-}
-@font-face {
-    font-family: sfpro-medium;
-    src: url("./SFPRODISPLAYMEDIUM.OTF");
-}
-@font-face {
-    font-family: sfpro-bold;
-    src: url("./SFPRODISPLAYBOLD.OTF");
+    font-family: sfpro;
+    src: url("./SF-Pro.ttf");
 }
