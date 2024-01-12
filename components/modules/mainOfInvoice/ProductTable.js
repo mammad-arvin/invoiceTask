@@ -84,7 +84,7 @@ const ProductTable = () => {
                                 {item.id < 10 && "0"}
                                 {item.id}
                             </TableCell>
-                            <TableCell className={`${cellStyle} w-[207px]`}>
+                            <TableCell className={`${cellStyle} w-[207px] table-capitalize`}>
                                 {item.product}
                             </TableCell>
                             <TableCell
@@ -97,10 +97,10 @@ const ProductTable = () => {
                             >
                                 {item.price}€
                             </TableCell>
-                            <TableCell className={`${cellStyle} w-[106px] `}>
+                            <TableCell className={`${cellStyle} w-[106px] table-capitalize`}>
                                 {item.bundledUnit}
                             </TableCell>
-                            <TableCell className={`${cellStyle} w-[95px] `}>
+                            <TableCell className={`${cellStyle} w-[95px] table-capitalize`}>
                                 {item.warehouse}
                             </TableCell>
                             <TableCell className={`${cellStyle} w-[50px]`}>
