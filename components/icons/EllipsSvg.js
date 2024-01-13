@@ -14,7 +14,7 @@ const EllipsSvg = () => {
                 r="4"
                 fill="#E52929"
                 stroke="white"
-                stroke-width="2"
+                strokeWidth="2"
             />
         </svg>
     );
