@@ -1,8 +1,6 @@
-import { Button } from "@/components/ui/button";
+import HomePage from "@/components/templates/HomePage";
 
 function Home() {
-    return (
-        
-    );
+    return <HomePage />;
 }
 export default Home;
