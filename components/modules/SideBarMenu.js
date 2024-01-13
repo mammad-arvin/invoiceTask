@@ -41,7 +41,9 @@ const SideBarMenu = () => {
                 </Button>
                 <Button>
                     <DocSvg />
-                    <p className="text-xs text-blue-600">Invoices</p>
+                    <p className="text-xs leading-[14.32px] text-blue-600">
+                        Invoices
+                    </p>
                 </Button>
                 <Button>
                     <UsersSvg />

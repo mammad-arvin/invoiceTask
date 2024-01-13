@@ -21,11 +21,9 @@ const ProductTable = () => {
 
     return (
         <div className="w-full">
-            <p className="mb-4 text-[14px] leading-[16.71px] font-['SF Pro']">
-                Product
-            </p>
+            <p className="mb-4 text-[14px] leading-[16.71px]">Product</p>
             <Table className="text-[13px] rounded border border-zinc-300 flex-col justify-start items-start w-full flex">
-                <TableHeader className="">
+                <TableHeader>
                     <TableRow>
                         <TableHead className={`${headerStyle} w-[41px]`}>
                             ID
@@ -78,13 +76,14 @@ const ProductTable = () => {
                 <TableBody>
                     {productsData.map((item) => (
                         <TableRow
+                            key={item.id}
                             className={item.id % 2 === 0 && "bg-[#F8F9F9]"}
                         >
                             <TableCell className={`${cellStyle} w-[41px]`}>
                                 {item.id < 10 && "0"}
                                 {item.id}
                             </TableCell>
-                            <TableCell className={`${cellStyle} w-[207px] table-capitalize`}>
+                            <TableCell className={`${cellStyle} w-[207px]`}>
                                 {item.product}
                             </TableCell>
                             <TableCell
@@ -97,10 +96,10 @@ const ProductTable = () => {
                             >
                                 {item.price}€
                             </TableCell>
-                            <TableCell className={`${cellStyle} w-[106px] table-capitalize`}>
+                            <TableCell className={`${cellStyle} w-[106px]`}>
                                 {item.bundledUnit}
                             </TableCell>
-                            <TableCell className={`${cellStyle} w-[95px] table-capitalize`}>
+                            <TableCell className={`${cellStyle} w-[95px]`}>
                                 {item.warehouse}
                             </TableCell>
                             <TableCell className={`${cellStyle} w-[50px]`}>
@@ -124,7 +123,9 @@ const ProductTable = () => {
                                 {item.dis}
                                 {item.dis ? "%" : "-"}
                             </TableCell>
-                            <TableCell className={`${cellStyle} w-[115px]`}>
+                            <TableCell
+                                className={`${cellStyle} w-[115px] normal-case`}
+                            >
                                 {minDescrip(item.description) || "-"}
                             </TableCell>
                             <TableCell
