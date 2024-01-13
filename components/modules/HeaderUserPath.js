@@ -52,7 +52,7 @@ const HeaderUserPath = () => {
                 </Link>
                 <Link href="">
                     <Avatar className="w-8 h-8 relative">
-                        <AvatarImage {...AvImage} />
+                        <AvatarImage src={AvImage.src} />
                         <AvatarFallback>AV</AvatarFallback>
                     </Avatar>
                 </Link>
