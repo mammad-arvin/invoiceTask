@@ -7,12 +7,12 @@ import Print from "@/components/icons/Print";
 import Trash from "@/components/icons/Trash";
 import { Badge } from "@/components/ui/badge";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import IconButton from "./IconButton";
+import IconButton from "./draftInvoice/IconButton";
 import { Button } from "@/components/ui/button";
 
 const InvoiceBar = () => {
-    const textDivStyel="flex justify-start items-center gap-2"
-    const infoHeaderStyle="text-neutral-400 text-[13px]"
+    const textDivStyel = "flex justify-start items-center gap-2";
+    const infoHeaderStyle = "text-neutral-400 text-[13px]";
     const infoTextStyel = "text-gray-950 text-[13px] font-[510]";
 
     const btns = [
@@ -50,7 +50,7 @@ const InvoiceBar = () => {
             <div className="flex gap-x-1 text-xs leading-[14.32px]">
                 <TooltipProvider>
                     {btns.map((btn, index) => (
-                        <React.Fragment key={index} >
+                        <React.Fragment key={index}>
                             {index === 3 && (
                                 <div className="flex items-center">
                                     <div className="w-px h-6 bg-gray-200 rounded-sm absolute" />
