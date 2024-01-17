@@ -1,6 +1,6 @@
 import SignatureSvg from "@/components/icons/SignatureSvg";
 
-const OtherInfo = () => {
+const OtherInfo = ({ draft }) => {
     // styles
     const titleStyle = "text-[13px] leading-[15.51px] font-[400] text-zinc-500";
 
@@ -16,34 +16,38 @@ const OtherInfo = () => {
         "text-[13px] leading-[15.51px] font-[510] text-[#5E5E5E]";
 
     return (
-        <div className="h-64 flex flex-col justify-start gap-4 ">
-            <p className="text-gray-950 text-sm font-[510] leading-[16.71px] ">
-                Other Information
-            </p>
-
-            <div className={flexStyle}>
-                <div className="w-[286px] flex flex-col gap-2 ">
-                    <p className={titleStyle}>Factor Name</p>
-                    <p className={desripStyle}>Factor Name</p>
-                </div>
-                <div className="w-[286px] flex flex-col gap-2 ">
-                    <p className={titleStyle}>Type</p>
-                    <p>
-                        <span className="text-green-600 text-[13px] font-[510] leading-[15.51px]">
-                            +
-                        </span>
-                        <span className={desripStyle}>Increase</span>
+        <div className="flex flex-col justify-start gap-4 ">
+            {draft && (
+                <>
+                    <p className="text-gray-950 text-sm font-[510] leading-[16.71px] ">
+                        Other Information
                     </p>
-                </div>
-                <div className="flex flex-col gap-2">
-                    <p className={titleStyle}>Amount</p>
-                    <p className={desripStyle}>50.0 €</p>
-                </div>
-            </div>
 
-            <div>
-                <div className="w-full h-[1px] bg-zinc-300 rounded-sm" />
-            </div>
+                    <div className={flexStyle}>
+                        <div className="w-[286px] flex flex-col gap-2 ">
+                            <p className={titleStyle}>Factor Name</p>
+                            <p className={desripStyle}>Factor Name</p>
+                        </div>
+                        <div className="w-[286px] flex flex-col gap-2 ">
+                            <p className={titleStyle}>Type</p>
+                            <p>
+                                <span className="text-green-600 text-[13px] font-[510] leading-[15.51px]">
+                                    +
+                                </span>
+                                <span className={desripStyle}>Increase</span>
+                            </p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <p className={titleStyle}>Amount</p>
+                            <p className={desripStyle}>50.0 €</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="w-full h-[1px] bg-zinc-300 rounded-sm" />
+                    </div>
+                </>
+            )}
 
             <div className="flex gap-4 ">
                 <div className="grow flex flex-col  gap-4 ">
