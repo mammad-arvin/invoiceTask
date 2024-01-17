@@ -10,7 +10,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import IconButton from "./draftInvoice/IconButton";
 import { Button } from "@/components/ui/button";
 
-const InvoiceBar = () => {
+const InvoiceBar = ({ status }) => {
     const textDivStyel = "flex justify-start items-center gap-2";
     const infoHeaderStyle = "text-neutral-400 text-[13px]";
     const infoTextStyel = "text-gray-950 text-[13px] font-[510]";
@@ -41,9 +41,13 @@ const InvoiceBar = () => {
                 </div>
                 <Badge
                     variant="secondary"
-                    className="bg-[#E578291A] hover:bg-[#E578291A] text-[#E57829] text-[11px] leading-[13.13px] font-[400]  rounded px-1"
+                    className={`${
+                        status === "Drafted"
+                            ? "bg-[#E578291A] hover:bg-[#E578291A] text-[#E57829]"
+                            : "bg-[#EAEFFF] hover:bg-[#EAEFFF] text-[#2E5BFF]"
+                    } text-[11px] leading-[13.13px] font-[400] rounded px-1`}
                 >
-                    Drafted
+                    {status}
                 </Badge>
             </div>
 
