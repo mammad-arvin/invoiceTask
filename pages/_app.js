@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }) {
     if (router.pathname.includes("/finalInvoice")) {
         return (
             <Providers>
-                <Component {...pageProps} />;
+                <Component {...pageProps} />
             </Providers>
         );
     } else {
