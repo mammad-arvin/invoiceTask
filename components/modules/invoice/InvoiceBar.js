@@ -10,8 +10,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import IconButton from "./draftInvoice/IconButton";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import DraftInvoice from "./draftInvoice/DraftInvoice";
+import Link from "next/link";
 
-const InvoiceBar = ({ status }) => {
+const InvoiceBar = ({ status, setPage }) => {
     const textDivStyel = "flex justify-start items-center gap-2";
     const LableStyle = "text-[#A3A3A3] text-[13px]";
     const infoTextStyel = "text-gray-950 text-[13px] font-[510]";
@@ -72,13 +74,18 @@ const InvoiceBar = ({ status }) => {
                                             <div className="w-px h-6 bg-gray-200 rounded-sm absolute" />
                                         </div>
                                     )}
-                                    <IconButton {...btn} />
+                                    <IconButton {...btn} setPage={setPage} />
                                 </React.Fragment>
                             ))}
                         </TooltipProvider>
 
                         <Button className="h-[33px] w-[116px] bg-[#2E5BFF] hover:bg-blue-500 text-sm font-[510]">
-                            Set As Issued
+                            <Link
+                                className="py-1 px-4"
+                                href="/invoice/choose-a-template/configuration/finalInvoice"
+                            >
+                                Set As Issued
+                            </Link>
                         </Button>
                     </>
                 ) : (
@@ -89,7 +96,11 @@ const InvoiceBar = ({ status }) => {
                         <Button variant="ghost" className={InProgressBtnsStyle}>
                             Save As Draft
                         </Button>
-                        <Button variant="ghost" className={InProgressBtnsStyle}>
+                        <Button
+                            variant="ghost"
+                            className={InProgressBtnsStyle}
+                            onClick={() => setPage(<DraftInvoice />)}
+                        >
                             Set As Issued
                         </Button>
                     </div>
