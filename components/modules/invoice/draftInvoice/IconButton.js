@@ -7,7 +7,6 @@ import {
 import InProgress from "../InProgress/InProgress";
 
 const IconButton = ({ text, icon, setPage }) => {
-    console.log(icon);
     return (
         <Tooltip>
             <TooltipTrigger
