@@ -96,6 +96,21 @@ const TableCell = React.forwardRef<
 ));
 TableCell.displayName = "TableCell";
 
+const SelectTableCell = React.forwardRef<
+    HTMLSelectTableCellElement,
+    React.TdHTMLAttributes<HTMLSelectTableCellElement>
+>(({ className, ...props }, ref) => (
+    <td
+        ref={ref}
+        className={cn(
+            " align-middle py-2 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] border-r border-[#E3E9FF] text-left text-[#040714] text-[13px] leading-[15.51px] font-[400] px-3 ",
+            className
+        )}
+        {...props}
+    />
+));
+SelectTableCell.displayName = "SelectTableCell";
+
 const TableCaption = React.forwardRef<
     HTMLTableCaptionElement,
     React.HTMLAttributes<HTMLTableCaptionElement>
@@ -116,5 +131,6 @@ export {
     TableHead,
     TableRow,
     TableCell,
+    SelectTableCell,
     TableCaption,
 };
