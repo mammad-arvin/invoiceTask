@@ -23,12 +23,12 @@ const BasicInfo = () => {
         Bin: "",
     });
 
-    const selectPotions = (placeholder, oName, options) => {
+    const selectPotions = (placeholder, key, options) => {
         return (
             <Select
-                defaultValue={optionsValue[oName]}
+                defaultValue={optionsValue[key]}
                 onValueChange={(value) =>
-                    setOptionsValue({ ...optionsValue, [oName]: value })
+                    setOptionsValue({ ...optionsValue, [key]: value })
                 }
             >
                 <SelectTrigger className="w-full h-[32px] text-sm text-[#040714]">
@@ -109,8 +109,9 @@ const BasicInfo = () => {
                 <Label htmlFor="description">Invoice Description</Label>
                 <Input
                     type="text"
-                    placeholder="write your description"
-                    className="h-[32px] px-2 py-[6px]"
+                    id="description"
+                    placeholder="Invoice description"
+                    className="h-[32px] px-2 py-[6px] shadow-none"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
