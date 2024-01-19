@@ -2,10 +2,7 @@ import { Table, TableBody } from "@/components/ui/table";
 import TableRows from "./TableRows";
 import CreateTableHeader from "@/components/shared/invoiceShare/CreateTableHeader";
 
-// data
-import productsData from "@/Data/producsData";
-
-const ProductTable = () => {
+const ProductTable = ({ data }) => {
     const tableHeaders = [
         { text: "ID", width: "w-[17px] px-3" },
         { text: "Product", width: "w-[183px]" },
@@ -28,10 +25,9 @@ const ProductTable = () => {
             <p className="mb-4 text-[14px] leading-[16.71px]">Product</p>
             <Table className="text-[13px] rounded border border-zinc-300 flex-col justify-start items-start w-full flex">
                 <CreateTableHeader headers={tableHeaders} />
-
                 <TableBody className="w-full">
-                    {productsData.map((item) => (
-                        <TableRows item={item} />
+                    {data?.map((item, index) => (
+                        <TableRows key={index} id={index + 1} item={item} />
                     ))}
                 </TableBody>
             </Table>

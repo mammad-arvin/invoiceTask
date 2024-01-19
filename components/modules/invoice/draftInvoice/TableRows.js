@@ -3,20 +3,20 @@ import { TableCell, TableRow } from "@/components/ui/table";
 // utility function
 import { minDescrip } from "@/utility/utilityFuction";
 
-const TableRows = ({ item }) => {
+const TableRows = ({ item, id }) => {
     const cellStyle =
         "text-left text-[#040714] text-[13px] leading-[15.51px] py-3 px-0 font-[400]";
 
     return (
         <TableRow
-            key={item.id}
+            key={id}
             className={`${
-                item.id % 2 === 0 && "bg-[#F8F9F9]"
-            }  w-full flex justify-between`}
+                id % 2 === 0 && "bg-[#F8F9F9]"
+            }  w-full flex justify-between border-none`}
         >
             <TableCell className={`${cellStyle} w-[17px] px-3`}>
-                {item.id < 10 && "0"}
-                {item.id}
+                {id < 10 && "0"}
+                {id}
             </TableCell>
             <TableCell className={`${cellStyle} w-[183px]`}>
                 {item.product}

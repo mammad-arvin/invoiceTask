@@ -1,12 +1,15 @@
 import OtherInfo from "@/components/shared/invoiceShare/OtherInfo";
 import BasicInfo from "./BasicInfo";
 import ProductTable from "./ProductTable";
+import { useSelector } from "react-redux";
 
 const DraftInvoice = () => {
+    const selectedProducts = useSelector((store) => store.selectedProducts);
+
     return (
         <>
             <BasicInfo />
-            <ProductTable />
+            <ProductTable data={selectedProducts} />
             <OtherInfo draft={true} />
         </>
     );
