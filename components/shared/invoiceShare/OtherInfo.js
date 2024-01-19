@@ -1,19 +1,34 @@
-import SignatureSvg from "@/components/icons/SignatureSvg";
+import { useSelector } from "react-redux";
 
-const OtherInfo = ({ draft }) => {
-    // styles
-    const titleStyle = "text-[13px] leading-[15.51px] font-[400] text-zinc-500";
+// styles
+const titleStyle = "text-[13px] leading-[15.51px] font-[400] text-zinc-500";
 
-    const desripStyle =
-        "text-[13px] leading-[15.51px] font-[510] text-gray-950";
+const desripStyle = "text-[13px] leading-[15.51px] font-[510] text-gray-950";
 
-    const flexStyle = "flex justify-start items-center gap-4 ";
+const flexStyle = "flex justify-start items-center gap-4 ";
 
-    const leftTextStyle =
-        "w-[286px] text-zinc-500 text-[13px] leading-[15.51px] ";
+const leftTextStyle = "w-[286px] text-zinc-500 text-[13px] leading-[15.51px] ";
 
-    const rightTextStyle =
-        "text-[13px] leading-[15.51px] font-[510] text-[#5E5E5E]";
+const rightTextStyle =
+    "text-[13px] leading-[15.51px] font-[510] text-[#5E5E5E]";
+
+const OtherInfo = ({ draft, sign, signtureUrl }) => {
+    const signWidth = sign ? sign : "w-[561px]";
+
+    const selectedProducts = useSelector((store) => store.selectedProducts);
+
+    const base = selectedProducts?.reduce(
+        (sum, item) => (sum += item.total),
+        0
+    );
+    const totalWeight = selectedProducts?.reduce(
+        (sum, item) => (sum += item.totalWeight),
+        0
+    );
+    const discount = 13;
+
+    const invoiceProfit = ((base / 100) * discount).toFixed(2);
+    const taxes = 50;
 
     return (
         <div className="flex flex-col justify-start gap-4 ">
@@ -53,11 +68,11 @@ const OtherInfo = ({ draft }) => {
                 <div className="grow flex flex-col  gap-4 ">
                     <div className={flexStyle}>
                         <div className={leftTextStyle}>Base</div>
-                        <div className={rightTextStyle}>550.20 €</div>
+                        <div className={rightTextStyle}>{base} €</div>
                     </div>
                     <div className={flexStyle}>
                         <div className={leftTextStyle}>Total Weight</div>
-                        <div className={rightTextStyle}>50kg</div>
+                        <div className={rightTextStyle}>{totalWeight} kg</div>
                     </div>
                     <div className={flexStyle}>
                         <div className={leftTextStyle}>Taxes</div>
@@ -66,21 +81,36 @@ const OtherInfo = ({ draft }) => {
                     <div className={flexStyle}>
                         <p className={leftTextStyle}>Invoice Profit</p>
                         <p className="text-[13px] leading-[15.51px] font-[510] text-green-600 ">
-                            +600€
+                            +{invoiceProfit} €
                         </p>
                     </div>
                     <div className="flex gap-4 text-[13px] leading-[15.51px] ">
                         <p className="w-[286px] font-[510] text-[#040714] ">
                             Total
                         </p>
-                        <p className="font-[510] text-[#040714] ">1200.20 €</p>
+                        <p className="font-[510] text-[#040714] ">
+                            {(
+                                base -
+                                (base / 100) * discount +
+                                taxes
+                            ).toLocaleString()}
+                            €
+                        </p>
                     </div>
                 </div>
-                <div className="w-[561px] h-[144px]  p-4 rounded-lg border border-zinc-300 flex flex-col justify-start items-center gap-3 ">
+                <div
+                    className={`${signWidth} h-[144px]  p-4 rounded-lg border border-zinc-300 flex flex-col justify-start items-center gap-3`}
+                >
                     <p className="w-full text-gray-950 text-sm font-[510] leading-[16.71px] ">
                         Client Signature
                     </p>
-                    <SignatureSvg />
+                    {signtureUrl && (
+                        <img
+                            src={signtureUrl}
+                            className="w-[145px] h-[95px]"
+                            alt="signture"
+                        />
+                    )}
                 </div>
             </div>
         </div>
