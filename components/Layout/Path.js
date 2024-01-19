@@ -14,7 +14,7 @@ const Path = () => {
             : splitedPath[splitedPath.length - 1].split("-").join(" ");
 
     return (
-        <div className="grow h-8  flex items-center gap-2">
+        <div className="grow h-8  flex items-center gap-2 capitalize">
             <div className="flex justify-start items-center gap-2">
                 <Button
                     onClick={() => back()}
