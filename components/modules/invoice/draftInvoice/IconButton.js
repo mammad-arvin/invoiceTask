@@ -12,7 +12,11 @@ const IconButton = ({ text, icon, setPage }) => {
             <TooltipTrigger
                 className="my-2 mx-3"
                 onClick={() =>
-                    icon.type.name === "Edit" && setPage(<InProgress />)
+                    text === "Edit" &&
+                    setPage({
+                        page: <InProgress />,
+                        pageName: "InProgress",
+                    })
                 }
             >
                 {icon}

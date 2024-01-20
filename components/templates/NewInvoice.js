@@ -1,9 +1,16 @@
+"use client";
+
 import { useState } from "react";
 import InvoiceBar from "../modules/invoice/InvoiceBar";
 import InProgress from "../modules/invoice/InProgress/InProgress";
 
 const NewInvoice = () => {
-    const [page, setPage] = useState(<InProgress />);
+    const [page, setPage] = useState({
+        page: <InProgress />,
+        pageName: "InProgress",
+    });
+
+    console.log(page);
 
     return (
         <div className="div-container flex bg-white">
@@ -12,12 +19,12 @@ const NewInvoice = () => {
                     <InvoiceBar
                         setPage={setPage}
                         status={
-                            page.type.name === "InProgress"
+                            page.pageName === "InProgress"
                                 ? "In Progress"
                                 : "Drafted"
                         }
                     />
-                    {page}
+                    {page.page}
                 </main>
             </article>
         </div>

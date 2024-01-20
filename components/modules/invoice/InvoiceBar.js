@@ -99,7 +99,12 @@ const InvoiceBar = ({ status, setPage }) => {
                         <Button
                             variant="ghost"
                             className={InProgressBtnsStyle}
-                            onClick={() => setPage(<DraftInvoice />)}
+                            onClick={() =>
+                                setPage({
+                                    page: <DraftInvoice />,
+                                    pageName: "DraftInvoice",
+                                })
+                            }
                         >
                             Set As Issued
                         </Button>
