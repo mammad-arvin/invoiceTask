@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import DraftInvoice from "./draftInvoice/DraftInvoice";
 import Link from "next/link";
+import { currentDate } from "@/utility/utilityFuction";
 
 const InvoiceBar = ({ status, setPage }) => {
     const textDivStyel = "flex justify-start items-center gap-2";
@@ -49,7 +50,7 @@ const InvoiceBar = ({ status, setPage }) => {
                     <Label htmlFor="Date" className={LableStyle}>
                         Date
                     </Label>
-                    <div className={infoTextStyel}>23-9-2023</div>
+                    <div className={infoTextStyel}>{currentDate()}</div>
                 </div>
                 <Badge
                     variant="secondary"

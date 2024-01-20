@@ -1,17 +1,7 @@
 import CompletGroupSvg from "@/components/icons/CompletGroupSvg";
-import { data } from "autoprefixer";
+import { currentDate } from "@/utility/utilityFuction";
 
 const InvoiceHeader = () => {
-    // data
-    const currentDate = () => {
-        const today = new Date();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-        const date = today.getDate();
-        const currentDate = month + "-" + date + "-" + year;
-        return currentDate;
-    };
-
     return (
         <div className="h-[72px] flex justify-between items-center gap-6 p-4 bg-[#EAEFFF] rounded-tl-lg rounded-tr-lg ">
             <div className="w-[391px]">
