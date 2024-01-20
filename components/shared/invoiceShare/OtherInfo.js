@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useSelector } from "react-redux";
 
 // styles
@@ -105,7 +106,9 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
                         Client Signature
                     </p>
                     {signtureUrl && (
-                        <img
+                        <Image
+                            width={145}
+                            height={95}
                             src={signtureUrl}
                             className="w-[145px] h-[95px]"
                             alt="signture"
