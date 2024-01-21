@@ -1,7 +1,14 @@
+"use client";
+
 // ui
-import { Select, SelectContent, SelectTrigger } from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectTrigger,
+    SelectItem,
+    SelectValue,
+} from "@/components/ui/select";
 import { SelectTableCell, TableRow } from "@/components/ui/table";
-import { SelectItem, SelectValue } from "@radix-ui/react-select";
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
@@ -48,7 +55,7 @@ const SelectRow = () => {
                 }
             >
                 <SelectTrigger className="w-full px-0 h-[16px] text-[13px] border-none">
-                    <SelectValue />
+                    <SelectValue placeholder={"select"} />
                 </SelectTrigger>
                 <SelectContent>
                     {productsList[key].map((item, index) => (
