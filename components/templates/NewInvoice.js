@@ -10,8 +10,6 @@ const NewInvoice = () => {
         pageName: "InProgress",
     });
 
-    console.log(page);
-
     return (
         <div className="div-container flex bg-white">
             <article className="w-full ">
