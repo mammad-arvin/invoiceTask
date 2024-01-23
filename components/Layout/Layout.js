@@ -1,3 +1,4 @@
+import { Toaster } from "../ui/toaster";
 import HeaderUserPath from "./HeaderUserPath";
 import SideBarMenu from "./SideBarMenu";
 
@@ -11,7 +12,10 @@ const Layout = ({ children }) => {
                 <nav>
                     <HeaderUserPath />
                 </nav>
-                <div>{children}</div>
+                <div>
+                    {children}
+                    <Toaster />
+                </div>
             </div>
         </div>
     );
