@@ -6,6 +6,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
+    DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,8 +16,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewProduct } from "@/Redux/features/productsList/productsListSlice";
 
+// toster
+import { useToast } from "@/components/ui/use-toast";
+
 const CreateProductModal = ({ setAddedNew, addedNew }) => {
     const dispatch = useDispatch();
+
+    const { toast } = useToast();
 
     const [createdProduct, setCreatedProduct] = useState({
         product: [{ name: "", price: "" }],
@@ -52,6 +58,18 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
     const createHandler = () => {
         dispatch(addNewProduct(createdProduct));
         setAddedNew(!addedNew);
+        setCreatedProduct({
+            product: [{ name: "", price: "" }],
+            warehouse: "",
+            bin: "",
+            tax: "",
+        });
+
+        toast({
+            className: "bg-[#26bf45]",
+            title: "Product Created",
+            description: "Now you can select product from list",
+        });
     };
 
     const createInput = (text) => {
@@ -105,6 +123,7 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
                             <Input
                                 type="number"
                                 id="price"
+                                min={1}
                                 value={product[0].price}
                                 onChange={changeHandler}
                             />
@@ -115,9 +134,15 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
                         <div>{createInput("bin")}</div>
 
                         <div>{createInput("tax")}</div>
-                        <Button disabled={disableBtn} onClick={createHandler}>
-                            Create
-                        </Button>
+                        <DialogClose disabled={disableBtn} className="mt-2">
+                            <Button
+                                className="w-full"
+                                disabled={disableBtn}
+                                onClick={createHandler}
+                            >
+                                Create
+                            </Button>
+                        </DialogClose>
                     </div>
                 </DialogHeader>
             </DialogContent>
