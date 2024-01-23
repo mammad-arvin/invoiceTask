@@ -8,7 +8,11 @@ const SelectedProductSlice = createSlice({
     reducers: {
         submitSelect: (state, action) => {
             const findProd = state.findIndex(
-                (prod) => prod.product === action.payload.product
+                (prod) =>
+                    prod.product === action.payload.product &&
+                    prod.warehouse === action.payload.warehouse &&
+                    prod.bin === action.payload.bin &&
+                    prod.tax === action.payload.tax
             );
             if (findProd >= 0) {
                 state[findProd].qty++;

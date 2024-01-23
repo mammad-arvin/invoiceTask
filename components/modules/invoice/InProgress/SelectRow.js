@@ -40,6 +40,7 @@ const SelectRow = () => {
 
     const submitHandler = () => {
         dispatch(submitSelect(selected));
+        setSelected({ ...selected, product: "" });
     };
 
     const cancelHandler = () => {
