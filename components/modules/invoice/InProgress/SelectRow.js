@@ -14,9 +14,10 @@ import { SelectTableCell, TableRow } from "@/components/ui/table";
 import { useDispatch, useSelector } from "react-redux";
 import SubmitSvg from "@/components/icons/SubmitSvg";
 import CancelSvg from "@/components/icons/CancelSvg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { submitSelect } from "@/Redux/features/sectedProducts/selectedProductsSlice";
+import { Input } from "@/components/ui/input";
 
 const SelectRow = () => {
     // list of product
@@ -26,6 +27,11 @@ const SelectRow = () => {
     const dispatch = useDispatch();
 
     const [selected, setSelected] = useState({});
+
+    console.log(selected);
+    useEffect(() => {
+        setSelected({ ...selected, total: +selected.qty * selected.price });
+    }, [selected.qty]);
 
     const disalbleBtns =
         selected.product &&
@@ -73,6 +79,23 @@ const SelectRow = () => {
         );
     };
 
+    const createInput = (text) => {
+        return (
+            <Input
+                type={text === "qty" ? "number" : "text"}
+                min={text === "qty" ? 1 : ""}
+                placeholder="write"
+                className="p-0 h-[25px]"
+                value={selected[text] || ""}
+                onChange={(e) =>
+                    text === "qty"
+                        ? setSelected({ ...selected, [text]: +e.target.value })
+                        : setSelected({ ...selected, [text]: e.target.value })
+                }
+            />
+        );
+    };
+
     return (
         <TableRow className="w-full h-[40px] flex justify-between items-center bg-[#F1F4FC] hover:bg-[#F1F4FC] ">
             <SelectTableCell className="w-[41px]">ID</SelectTableCell>
@@ -86,8 +109,6 @@ const SelectRow = () => {
                             product: value.name,
                             qty: 1,
                             price: value.price,
-                            bundledUnit: "Box",
-                            description: "",
                             weight: 3,
                             totalWeight: 3,
                             total: value.price,
@@ -111,13 +132,15 @@ const SelectRow = () => {
                 </Select>
             </SelectTableCell>
 
-            <SelectTableCell className="w-[47px]">
-                {selected.qty || "-"}
+            <SelectTableCell className="w-[47px] p-1">
+                {createInput("qty")}
             </SelectTableCell>
             <SelectTableCell className="w-[57px]">
                 {selected.price ? selected.price + " €" : "-"}
             </SelectTableCell>
-            <SelectTableCell className="w-[106px]">Box</SelectTableCell>
+            <SelectTableCell className="w-[106px] p-2">
+                {createInput("bundledUnit")}
+            </SelectTableCell>
 
             <SelectTableCell className="w-[109px]">
                 {createSelect("warehouse")}
@@ -130,8 +153,12 @@ const SelectRow = () => {
                 {createSelect("tax")}
             </SelectTableCell>
 
-            <SelectTableCell className="w-[97px]">-</SelectTableCell>
-            <SelectTableCell className="w-[87px]">-</SelectTableCell>
+            <SelectTableCell className="w-[97px] p-1">
+                {createInput("description")}
+            </SelectTableCell>
+            <SelectTableCell className="w-[87px]">
+                {selected.total || "-"}
+            </SelectTableCell>
             <SelectTableCell className="w-[88px] flex justify-between items-center">
                 <Button
                     variant="ghost"
