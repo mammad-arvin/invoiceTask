@@ -35,6 +35,7 @@ const SelectProductTable = () => {
         (sum, item) => (sum += item.total),
         0
     );
+    const taxes = selectedProducts?.reduce((sum, item) => (sum += item.tax), 0);
 
     return (
         <div className="w-full">
@@ -60,7 +61,7 @@ const SelectProductTable = () => {
                 <Calculations
                     base={totalOfProducts}
                     discount={13}
-                    taxes={50.0}
+                    taxes={taxes}
                 />
             )}
         </div>
