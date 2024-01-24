@@ -29,7 +29,8 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
     const discount = 13;
 
     const invoiceProfit = ((base / 100) * discount).toFixed(2);
-    const taxes = 50;
+
+    const taxes = selectedProducts?.reduce((sum, item) => (sum += item.tax), 0);
 
     return (
         <div className="flex flex-col justify-start gap-4 ">
@@ -77,7 +78,7 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
                     </div>
                     <div className={flexStyle}>
                         <div className={leftTextStyle}>Taxes</div>
-                        <div className={rightTextStyle}>50.0 €</div>
+                        <div className={rightTextStyle}>{taxes} €</div>
                     </div>
                     <div className={flexStyle}>
                         <p className={leftTextStyle}>Invoice Profit</p>
