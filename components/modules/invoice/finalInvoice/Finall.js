@@ -36,10 +36,10 @@ const Finall = () => {
     }, [invoiceRef]);
 
     return (
-        <div className="flex h-full justify-center items-center p-[204px] ">
+        <div className="flex flex-col h-full justify-center items-center p-[204px] ">
             <div
                 ref={invoiceRef}
-                className="w-[903px] h-[724px]justify-start items-center gap-6 "
+                className="w-[903px] justify-start items-center gap-6 "
             >
                 <InvoiceHeader />
 
@@ -54,21 +54,20 @@ const Finall = () => {
                         <OtherInfo sign="w-[367px]" signtureUrl={url} />
                     </div>
                 </div>
+            </div>
+            {/* btns */}
+            <div className="w-full flex justify-between items- py-6 px-5">
+                <Button
+                    variant="outline"
+                    className="w-[439px] h-[49px] flex justify-center items-center gap-2 text-[14px] font-[510]  text-[#2E5BFF]  border-[#2E5BFF] rounded-[8px] "
+                    onClick={onButtonClick}
+                >
+                    <DownloadInvoiceSvg /> Download
+                </Button>
 
-                {/* btns */}
-                <div className="flex justify-between items- pt-6">
-                    <Button
-                        variant="outline"
-                        className="w-[439px] h-[49px] flex justify-center items-center gap-2 text-[14px] font-[510]  text-[#2E5BFF]  border-[#2E5BFF] rounded-[8px] "
-                        onClick={onButtonClick}
-                    >
-                        <DownloadInvoiceSvg /> Download
-                    </Button>
-
-                    <SignturePad setUrl={setUrl}>
-                        <PenSvg /> Sign
-                    </SignturePad>
-                </div>
+                <SignturePad setUrl={setUrl}>
+                    <PenSvg /> Sign
+                </SignturePad>
             </div>
         </div>
     );
