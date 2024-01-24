@@ -12,14 +12,19 @@ const SelectedProductSlice = createSlice({
                     prod.product === action.payload.product &&
                     prod.warehouse === action.payload.warehouse &&
                     prod.bin === action.payload.bin &&
-                    prod.tax === action.payload.tax
+                    prod.tax === action.payload.tax &&
+                    prod.bundledUnit === action.payload.bundledUnit
             );
             if (findProd >= 0) {
-                state[findProd].qty++;
+                state[findProd].qty += action.payload.qty;
+
                 state[findProd].total =
                     state[findProd].price * state[findProd].qty;
+
                 state[findProd].totalWeight =
                     state[findProd].totalWeight + state[findProd].weight;
+
+                state[findProd].description = action.payload.description;
             } else {
                 state.push(action.payload);
             }
