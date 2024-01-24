@@ -9,8 +9,8 @@ const initialState = {
         { name: "Magnetic", price: 59 },
     ],
     warehouse: ["Deltebre", "Rezaie", "Ahmadi"],
-    bin: ["A89"],
-    tax: ["IVA-IRPF"],
+    bin: ["A89", "A44", "C21"],
+    tax: [31, 50, 23, 11],
 };
 
 const productsList = createSlice({
