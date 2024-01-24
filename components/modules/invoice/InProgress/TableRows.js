@@ -1,3 +1,5 @@
+"use client";
+
 import {
     deleteProduct,
     editeSelectedProduct,
@@ -7,12 +9,21 @@ import TableEditeSvg from "@/components/icons/TableEditeSvg";
 import TableTrashSvg from "@/components/icons/TableTrashSvg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { TableCell, TableRow } from "@/components/ui/table";
 
 // utility function
 import { minDescrip } from "@/utility/utilityFuction";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+
+//redux
+import { useDispatch, useSelector } from "react-redux";
 
 // style
 const cellStyle =
@@ -35,11 +46,51 @@ const TableRows = ({ item, id, final }) => {
     const dispatch = useDispatch();
 
     const [edite, setEdite] = useState(false);
-    const [qtyE, setQtyE] = useState(qty);
+
+    const [newData, setNewData] = useState({
+        product,
+        qty,
+        price,
+        bundledUnit,
+        warehouse,
+        bin,
+        tax,
+        description,
+        total,
+        totalWeight,
+    });
 
     const submitHandler = () => {
-        dispatch(editeSelectedProduct({ product, qty: qtyE }));
+        dispatch(editeSelectedProduct(newData));
         setEdite(false);
+    };
+
+    const productsList = useSelector((store) => store.productsList);
+
+    const createSelect = (key) => {
+        return (
+            <Select
+                defaultValue={newData[key]}
+                onValueChange={(value) =>
+                    setNewData({ ...newData, [key]: value })
+                }
+            >
+                <SelectTrigger className="w-full px-0 h-[16px] text-[13px] border-none">
+                    <SelectValue placeholder={"select"} />
+                </SelectTrigger>
+                <SelectContent>
+                    {productsList[key].map((item, index) => (
+                        <SelectItem
+                            key={index}
+                            value={item}
+                            className={`text-[12px] text-[#040714] p-1 `}
+                        >
+                            {item}
+                        </SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
+        );
     };
 
     return (
@@ -59,42 +110,80 @@ const TableRows = ({ item, id, final }) => {
                 {product}
             </TableCell>
             <TableCell
-                className={`${cellStyle} w-[47px] ${edite && "pl-1 pt-1"}`}
+                className={`${cellStyle} w-[47px] ${edite && "pl-0 pt-2"}`}
             >
                 {!edite ? (
                     qty
                 ) : (
                     <Input
                         type="number"
-                        className="w-full h-[30px] p-1 m-0"
+                        className="w-full h-[25px] p-1 "
                         min={1}
-                        value={qtyE}
-                        onChange={(e) => setQtyE(e.target.value)}
+                        value={newData.qty}
+                        onChange={(e) =>
+                            setNewData({ ...newData, qty: +e.target.value })
+                        }
                     />
                 )}
             </TableCell>
             <TableCell className={`${cellStyle} w-[57px]`}>{price}€</TableCell>
-            <TableCell className={`${cellStyle} w-[106px]`}>
-                {bundledUnit}
+            <TableCell
+                className={`${cellStyle} w-[106px] ${edite && "pl-0 pt-2"}`}
+            >
+                {!edite ? (
+                    bundledUnit
+                ) : (
+                    <Input
+                        type="text"
+                        className="w-[95%] h-[25px] p-1 m-0"
+                        value={newData.bundledUnit}
+                        onChange={(e) =>
+                            setNewData({
+                                ...newData,
+                                bundledUnit: e.target.value,
+                            })
+                        }
+                    />
+                )}
             </TableCell>
             <TableCell
                 className={`${cellStyle}  ${final ? "w-[95px]" : "w-[109px]"}`}
             >
-                {warehouse}
+                {!edite ? warehouse : createSelect("warehouse")}
             </TableCell>
             <TableCell
                 className={`${cellStyle}  ${final ? "w-[50px]" : "w-[66px]"} `}
             >
-                {bin}
+                {!edite ? bin : createSelect("bin")}
             </TableCell>
             {final && (
                 <TableCell className={`${cellStyle} w-[66px]`}>
                     {totalWeight} kg
                 </TableCell>
             )}
-            <TableCell className={`${cellStyle} w-[86px]`}>{tax}</TableCell>
-            <TableCell className={`${cellStyle} w-[97px] normal-case`}>
-                {minDescrip(description) || "-"}
+            <TableCell className={`${cellStyle} w-[86px]`}>
+                {!edite ? tax : createSelect("tax")}
+            </TableCell>
+            <TableCell
+                className={`${cellStyle} w-[97px] normal-case ${
+                    edite && "pl-0 pt-2"
+                }`}
+            >
+                {!edite ? (
+                    minDescrip(description) || "-"
+                ) : (
+                    <Input
+                        type="text"
+                        className="w-full h-[25px] p-1 m-0"
+                        value={newData.description}
+                        onChange={(e) =>
+                            setNewData({
+                                ...newData,
+                                description: e.target.value,
+                            })
+                        }
+                    />
+                )}
             </TableCell>
             <TableCell className={`${cellStyle} w-[87px]`}>
                 {total.toLocaleString() + "€"}

@@ -48,6 +48,12 @@ const SelectedProductSlice = createSlice({
                     state[findProd].price * action.payload.qty;
                 state[findProd].totalWeight =
                     state[findProd].weight * state[findProd].qty;
+
+                state[findProd].description = action.payload.description;
+                state[findProd].tax = action.payload.tax;
+                state[findProd].bin = action.payload.bin;
+                state[findProd].warehouse = action.payload.warehouse;
+                state[findProd].bundledUnit = action.payload.bundledUnit;
             }
         },
     },
