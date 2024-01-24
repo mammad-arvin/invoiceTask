@@ -47,6 +47,11 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
                     { ...createdProduct.product[0], price: +e.target.value },
                 ],
             });
+        } else if (e.target.id === "tax") {
+            setCreatedProduct({
+                ...createdProduct,
+                tax: +e.target.value,
+            });
         } else {
             setCreatedProduct({
                 ...createdProduct,
@@ -80,7 +85,8 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
                     {text}
                 </Label>
                 <Input
-                    type="text"
+                    type={text === "tax" ? "number" : "text"}
+                    min={text === "qty" ? 1 : ""}
                     maxLength={20}
                     id={joined}
                     value={createdProduct[joined]}
