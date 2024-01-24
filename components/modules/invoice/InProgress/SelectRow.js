@@ -28,7 +28,6 @@ const SelectRow = () => {
 
     const [selected, setSelected] = useState({});
 
-    console.log(selected);
     useEffect(() => {
         setSelected({ ...selected, total: +selected.qty * selected.price });
     }, [selected.qty]);
@@ -170,7 +169,6 @@ const SelectRow = () => {
                 </Button>
                 <Button
                     variant="ghost"
-                    disabled={!disalbleBtns}
                     className="p-0 h-6"
                     onClick={() => cancelHandler()}
                 >
