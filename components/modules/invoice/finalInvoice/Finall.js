@@ -18,7 +18,8 @@ const Finall = () => {
     // for get url of signture
     const [url, setUrl] = useState();
 
-    const onButtonClick = useCallback(() => {
+    // download Hoandler
+    const downloadHandler = useCallback(() => {
         if (invoiceRef.current === null) {
             return;
         }
@@ -26,7 +27,7 @@ const Finall = () => {
         toPng(invoiceRef.current, { cacheBust: true })
             .then((dataUrl) => {
                 const link = document.createElement("a");
-                link.download = "my-image-name.png";
+                link.download = "invoice.png";
                 link.href = dataUrl;
                 link.click();
             })
@@ -39,7 +40,7 @@ const Finall = () => {
         <div className="flex flex-col h-full justify-center items-center p-[204px] ">
             <div
                 ref={invoiceRef}
-                className="w-[903px] justify-start items-center gap-6 "
+                className="w-[903px] bg-white justify-start items-center gap-6 "
             >
                 <InvoiceHeader />
 
@@ -55,12 +56,13 @@ const Finall = () => {
                     </div>
                 </div>
             </div>
+
             {/* btns */}
-            <div className="w-full flex justify-between items- py-6 px-5">
+            <div className="w-[903px] flex justify-between items-center py-6 ">
                 <Button
                     variant="outline"
                     className="w-[439px] h-[49px] flex justify-center items-center gap-2 text-[14px] font-[510]  text-[#2E5BFF]  border-[#2E5BFF] rounded-[8px] "
-                    onClick={onButtonClick}
+                    onClick={downloadHandler}
                 >
                     <DownloadInvoiceSvg /> Download
                 </Button>
