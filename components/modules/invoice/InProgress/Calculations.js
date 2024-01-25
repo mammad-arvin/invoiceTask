@@ -1,5 +1,5 @@
 import {
-    selectBasicInfoSelectedProduct,
+    selectBasicInfo,
     selectTotalOFSelectedProduct,
 } from "@/Redux/features/sectedProducts/inProgressSlice";
 import { useSelector } from "react-redux";
@@ -9,7 +9,7 @@ const flexStyle = "flex justify-center items-center  gap-4";
 const valStyle = "font-[510] text-zinc-600 ";
 
 const Calculations = () => {
-    const { discount } = useSelector(selectBasicInfoSelectedProduct);
+    const { discount } = useSelector(selectBasicInfo);
     const { base, taxes, total } = useSelector(selectTotalOFSelectedProduct);
 
     return (
@@ -31,7 +31,7 @@ const Calculations = () => {
 
                 <div className={flexStyle}>
                     <p>Taxes</p>
-                    <p className={valStyle}>{taxes} €</p>
+                    <p className={valStyle}>{taxes.toFixed(2)} €</p>
                 </div>
 
                 <div className="w-[1px] h-[16px] self-stretch bg-[#EAEFFF]" />
