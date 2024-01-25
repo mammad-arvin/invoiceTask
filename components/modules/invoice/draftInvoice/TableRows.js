@@ -1,11 +1,16 @@
+import { selectBasicInfo } from "@/Redux/features/sectedProducts/inProgressSlice";
 import { TableCell, TableRow } from "@/components/ui/table";
 
 // utility function
 import { minDescrip } from "@/utility/utilityFuction";
+import { useSelector } from "react-redux";
+
+// style
+const cellStyle =
+    "text-left text-[#040714] text-[13px] leading-[15.51px] py-3 px-0 font-[400]";
 
 const TableRows = ({ item, id }) => {
-    const cellStyle =
-        "text-left text-[#040714] text-[13px] leading-[15.51px] py-3 px-0 font-[400]";
+    const { marketer, marketerShare, discount } = useSelector(selectBasicInfo);
 
     return (
         <TableRow
@@ -43,16 +48,16 @@ const TableRows = ({ item, id }) => {
                 {item.tax || "-"}
             </TableCell>
             <TableCell className={`${cellStyle} w-[57px]`}>
-                {item.marketer}
-                {item.marketer ? "%" : "-"}
+                {marketer}
+                {marketer ? "%" : "-"}
             </TableCell>
             <TableCell className={`${cellStyle} w-[97px]`}>
-                {item.marketerShare}
-                {item.marketerShare ? "%" : "-"}
+                {marketerShare}
+                {marketerShare ? "%" : "-"}
             </TableCell>
             <TableCell className={`${cellStyle} w-[25px]`}>
-                {item.dis}
-                {item.dis ? "%" : "-"}
+                {discount}
+                {discount ? "%" : "-"}
             </TableCell>
             <TableCell className={`${cellStyle} w-[73px] normal-case`}>
                 {minDescrip(item.description) || "-"}
