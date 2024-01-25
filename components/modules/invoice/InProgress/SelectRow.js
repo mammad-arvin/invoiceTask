@@ -16,7 +16,7 @@ import SubmitSvg from "@/components/icons/SubmitSvg";
 import CancelSvg from "@/components/icons/CancelSvg";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { submitSelect } from "@/Redux/features/sectedProducts/selectedProductsSlice";
+import { submitSelect } from "@/Redux/features/sectedProducts/inProgressSlice";
 import { Input } from "@/components/ui/input";
 
 const SelectRow = () => {

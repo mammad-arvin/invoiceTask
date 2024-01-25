@@ -1,7 +1,7 @@
 import {
     selectBasicInfoSelectedProduct,
     selectTotalOFSelectedProduct,
-} from "@/Redux/features/sectedProducts/selectedProductsSlice";
+} from "@/Redux/features/sectedProducts/inProgressSlice";
 import { useSelector } from "react-redux";
 
 // styles

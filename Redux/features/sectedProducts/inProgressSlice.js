@@ -35,8 +35,8 @@ const Calculations = (state) => {
     ).toLocaleString();
 };
 
-const SelectedProductSlice = createSlice({
-    name: "selectedProuduct",
+const inProgressSlice = createSlice({
+    name: "inProgressData",
     initialState,
     reducers: {
         submitSelect: (state, action) => {
@@ -104,14 +104,14 @@ const SelectedProductSlice = createSlice({
     },
 });
 
-export default SelectedProductSlice.reducer;
+export default inProgressSlice.reducer;
 export const { submitSelect, deleteProduct, editeSelectedProduct } =
-    SelectedProductSlice.actions;
+    inProgressSlice.actions;
 
-export const selectSelectedProduct = (store) => store.selectedProducts.selected;
+export const selectSelectedProduct = (store) => store.inProgressReduce.selected;
 
 export const selectTotalOFSelectedProduct = (store) =>
-    store.selectedProducts.total;
+    store.inProgressReduce.total;
 
 export const selectBasicInfoSelectedProduct = (store) =>
-    store.selectedProducts.basicInfo;
+    store.inProgressReduce.basicInfo;

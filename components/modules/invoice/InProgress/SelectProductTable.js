@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import Calculations from "./Calculations";
 import CreateProductModal from "./CreateProductModal";
 import { useState } from "react";
-import { selectSelectedProduct } from "@/Redux/features/sectedProducts/selectedProductsSlice";
+import { selectSelectedProduct } from "@/Redux/features/sectedProducts/inProgressSlice";
 
 const SelectProductTable = () => {
     const tableHeaders = [

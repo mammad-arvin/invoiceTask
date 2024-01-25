@@ -3,7 +3,7 @@
 import {
     deleteProduct,
     editeSelectedProduct,
-} from "@/Redux/features/sectedProducts/selectedProductsSlice";
+} from "@/Redux/features/sectedProducts/inProgressSlice";
 import SubmitSvg from "@/components/icons/SubmitSvg";
 import TableEditeSvg from "@/components/icons/TableEditeSvg";
 import TableTrashSvg from "@/components/icons/TableTrashSvg";

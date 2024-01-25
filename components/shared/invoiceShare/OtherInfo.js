@@ -1,4 +1,4 @@
-import { selectTotalOFSelectedProduct } from "@/Redux/features/sectedProducts/selectedProductsSlice";
+import { selectTotalOFSelectedProduct } from "@/Redux/features/sectedProducts/inProgressSlice";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 

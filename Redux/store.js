@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // reducers
-import selectedProducts from "./features/sectedProducts/selectedProductsSlice";
+import inProgressReduce from "./features/sectedProducts/inProgressSlice";
 import productsList from "./features/productsList/productsListSlice";
 
 const store = configureStore({
-    reducer: { selectedProducts, productsList },
+    reducer: { inProgressReduce, productsList },
 });
 
 export default store;
