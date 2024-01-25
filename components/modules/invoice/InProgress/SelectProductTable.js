@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import Calculations from "./Calculations";
 import CreateProductModal from "./CreateProductModal";
 import { useState } from "react";
+import { selectSelectedProduct } from "@/Redux/features/sectedProducts/selectedProductsSlice";
 
 const SelectProductTable = () => {
     const tableHeaders = [
@@ -29,13 +30,7 @@ const SelectProductTable = () => {
     // when a product create so component get new data
     const [addedNew, setAddedNew] = useState(false);
 
-    const selectedProducts = useSelector((store) => store.selectedProducts);
-
-    const totalOfProducts = selectedProducts?.reduce(
-        (sum, item) => (sum += item.total),
-        0
-    );
-    const taxes = selectedProducts?.reduce((sum, item) => (sum += item.tax), 0);
+    const selectedProducts = useSelector(selectSelectedProduct);
 
     return (
         <div className="w-full">
@@ -57,13 +52,7 @@ const SelectProductTable = () => {
                     ))}
                 </TableBody>
             </Table>
-            {selectedProducts.length > 0 && (
-                <Calculations
-                    base={totalOfProducts}
-                    discount={13}
-                    taxes={taxes}
-                />
-            )}
+            {selectedProducts.length > 0 && <Calculations />}
         </div>
     );
 };

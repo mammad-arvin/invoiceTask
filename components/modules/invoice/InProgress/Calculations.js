@@ -1,7 +1,16 @@
-const Calculations = ({ base, taxes, discount }) => {
-    const flexStyle = "flex justify-center items-center  gap-4";
+import {
+    selectBasicInfoSelectedProduct,
+    selectTotalOFSelectedProduct,
+} from "@/Redux/features/sectedProducts/selectedProductsSlice";
+import { useSelector } from "react-redux";
 
-    const valStyle = "font-[510] text-zinc-600 ";
+// styles
+const flexStyle = "flex justify-center items-center  gap-4";
+const valStyle = "font-[510] text-zinc-600 ";
+
+const Calculations = () => {
+    const { discount } = useSelector(selectBasicInfoSelectedProduct);
+    const { base, taxes, total } = useSelector(selectTotalOFSelectedProduct);
 
     return (
         <div className="flex justify-between">
@@ -33,12 +42,7 @@ const Calculations = ({ base, taxes, discount }) => {
                     </p>
 
                     <p className="text-[#040714] text-[13px] font-[510]">
-                        {(
-                            base -
-                            (base / 100) * discount +
-                            taxes
-                        ).toLocaleString()}{" "}
-                        €
+                        {total} €
                     </p>
                 </div>
             </div>

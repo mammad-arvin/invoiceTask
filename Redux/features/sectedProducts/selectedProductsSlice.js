@@ -1,13 +1,46 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
-const initialState = [];
+const initialState = {
+    basicInfo: { discount: 0 },
+    selected: [],
+    total: { base: 0, totalWeight: 0, taxes: 0, invoiceProfit: 0, total: 0 },
+};
+
+// calculation for all selected product
+const Calculations = (state) => {
+    state.total.base = state.selected.reduce(
+        (sum, item) => (sum += item.total),
+        0
+    );
+
+    state.total.totalWeight = state.selected.reduce(
+        (sum, item) => (sum += item.totalWeight),
+        0
+    );
+
+    state.total.taxes = state.selected.reduce(
+        (sum, item) => (sum += (item.total / 100) * item.tax),
+        0
+    );
+
+    state.total.invoiceProfit = (
+        (state.total.base / 100) *
+        state.basicInfo.discount
+    ).toFixed(2);
+
+    state.total.total = (
+        state.total.base -
+        (state.total.base / 100) * state.basicInfo.discount +
+        state.total.taxes
+    ).toLocaleString();
+};
 
 const SelectedProductSlice = createSlice({
     name: "selectedProuduct",
     initialState,
     reducers: {
         submitSelect: (state, action) => {
-            const findProd = state.findIndex(
+            const findProd = state.selected.findIndex(
                 (prod) =>
                     prod.product === action.payload.product &&
                     prod.warehouse === action.payload.warehouse &&
@@ -16,44 +49,56 @@ const SelectedProductSlice = createSlice({
                     prod.bundledUnit === action.payload.bundledUnit
             );
             if (findProd >= 0) {
-                state[findProd].qty += action.payload.qty;
+                state.selected[findProd].qty += action.payload.qty;
 
-                state[findProd].total =
-                    state[findProd].price * state[findProd].qty;
+                state.selected[findProd].total =
+                    state.selected[findProd].price *
+                    state.selected[findProd].qty;
 
-                state[findProd].totalWeight =
-                    state[findProd].totalWeight + state[findProd].weight;
+                state.selected[findProd].totalWeight =
+                    state.selected[findProd].totalWeight +
+                    state.selected[findProd].weight;
 
-                state[findProd].description = action.payload.description;
+                state.selected[findProd].description =
+                    action.payload.description;
+
+                Calculations(state);
             } else {
-                state.push(action.payload);
+                state.selected.push(action.payload);
+                Calculations(state);
             }
         },
         deleteProduct: (state, action) => {
-            const findProd = state.findIndex(
+            const findProd = state.selected.findIndex(
                 (prod) => prod.product === action.payload
             );
 
             if (findProd >= 0) {
-                state.splice(findProd, 1);
+                state.selected.splice(findProd, 1);
+                Calculations(state);
             }
         },
         editeSelectedProduct: (state, action) => {
-            const findProd = state.findIndex(
+            const findProd = state.selected.findIndex(
                 (prod) => prod.product === action.payload.product
             );
             if (findProd >= 0) {
-                state[findProd].qty = action.payload.qty;
-                state[findProd].total =
-                    state[findProd].price * action.payload.qty;
-                state[findProd].totalWeight =
-                    state[findProd].weight * state[findProd].qty;
+                state.selected[findProd].qty = action.payload.qty;
+                state.selected[findProd].total =
+                    state.selected[findProd].price * action.payload.qty;
+                state.selected[findProd].totalWeight =
+                    state.selected[findProd].weight *
+                    state.selected[findProd].qty;
 
-                state[findProd].description = action.payload.description;
-                state[findProd].tax = action.payload.tax;
-                state[findProd].bin = action.payload.bin;
-                state[findProd].warehouse = action.payload.warehouse;
-                state[findProd].bundledUnit = action.payload.bundledUnit;
+                state.selected[findProd].description =
+                    action.payload.description;
+                state.selected[findProd].tax = action.payload.tax;
+                state.selected[findProd].bin = action.payload.bin;
+                state.selected[findProd].warehouse = action.payload.warehouse;
+                state.selected[findProd].bundledUnit =
+                    action.payload.bundledUnit;
+
+                Calculations(state);
             }
         },
     },
@@ -62,3 +107,11 @@ const SelectedProductSlice = createSlice({
 export default SelectedProductSlice.reducer;
 export const { submitSelect, deleteProduct, editeSelectedProduct } =
     SelectedProductSlice.actions;
+
+export const selectSelectedProduct = (store) => store.selectedProducts.selected;
+
+export const selectTotalOFSelectedProduct = (store) =>
+    store.selectedProducts.total;
+
+export const selectBasicInfoSelectedProduct = (store) =>
+    store.selectedProducts.basicInfo;

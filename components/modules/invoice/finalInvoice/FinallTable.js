@@ -2,6 +2,7 @@ import CreateTableHeader from "@/components/shared/invoiceShare/CreateTableHeade
 import { Table, TableBody } from "@/components/ui/table";
 import TableRows from "../InProgress/TableRows";
 import { useSelector } from "react-redux";
+import { selectSelectedProduct } from "@/Redux/features/sectedProducts/selectedProductsSlice";
 
 // headers
 
@@ -20,7 +21,7 @@ const tableHeaders = [
 ];
 
 const FinallTable = () => {
-    const selectedProducts = useSelector((store) => store.selectedProducts);
+    const selectedProducts = useSelector(selectSelectedProduct);
 
     return (
         <div>

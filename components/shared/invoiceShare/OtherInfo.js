@@ -1,3 +1,4 @@
+import { selectTotalOFSelectedProduct } from "@/Redux/features/sectedProducts/selectedProductsSlice";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 
@@ -16,21 +17,9 @@ const rightTextStyle =
 const OtherInfo = ({ draft, sign, signtureUrl }) => {
     const signWidth = sign ? sign : "w-[561px]";
 
-    const selectedProducts = useSelector((store) => store.selectedProducts);
-
-    const base = selectedProducts?.reduce(
-        (sum, item) => (sum += item.total),
-        0
+    const { base, totalWeight, taxes, invoiceProfit, total } = useSelector(
+        selectTotalOFSelectedProduct
     );
-    const totalWeight = selectedProducts?.reduce(
-        (sum, item) => (sum += item.totalWeight),
-        0
-    );
-    const discount = 13;
-
-    const invoiceProfit = ((base / 100) * discount).toFixed(2);
-
-    const taxes = selectedProducts?.reduce((sum, item) => (sum += item.tax), 0);
 
     return (
         <div className="flex flex-col justify-start gap-4 ">
@@ -90,14 +79,7 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
                         <p className="w-[286px] font-[510] text-[#040714] ">
                             Total
                         </p>
-                        <p className="font-[510] text-[#040714] ">
-                            {(
-                                base -
-                                (base / 100) * discount +
-                                taxes
-                            ).toLocaleString()}
-                            €
-                        </p>
+                        <p className="font-[510] text-[#040714] ">{total} €</p>
                     </div>
                 </div>
                 <div
