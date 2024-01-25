@@ -14,19 +14,20 @@ const basicInfoInitialValue = createSlice({
     name: "basicInfoInitialValue",
     initialState,
     reducers: {
-        addNewClinet: (state, action) => {
-            const findProd = state.Client.findIndex(
-                (prod) => prod === action.payload
+        addNewItem: (state, action) => {
+            console.log(action.payload);
+            const findProd = state[action.payload.itemKey].findIndex(
+                (prod) => prod === action.payload.item
             );
             if (findProd < 0) {
-                state.client.push(action.payload);
+                state[action.payload.itemKey].push(action.payload.item);
             }
         },
     },
 });
 
 export default basicInfoInitialValue.reducer;
-export const { addNewProduct } = basicInfoInitialValue.actions;
+export const { addNewItem } = basicInfoInitialValue.actions;
 
 export const selectbasicInfoInitialValue = (store) =>
     store.basicInfoInitialValue;

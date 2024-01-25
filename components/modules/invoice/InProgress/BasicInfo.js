@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AddBasicItemModal from "./AddBasicItemModal";
 
 // style
 const optionDivStyle = "w-[22%] flex flex-col gap-2";
@@ -45,6 +46,9 @@ const BasicInfo = () => {
         dispath(getBasicInfo(optionsValue));
     }, [optionsValue]);
 
+    // when a product create so component get new data
+    const [addedNew, setAddedNew] = useState(false);
+
     const selectPotions = (placeholder, key, options) => {
         return (
             <Select
@@ -57,6 +61,11 @@ const BasicInfo = () => {
                     <SelectValue placeholder={placeholder} />
                 </SelectTrigger>
                 <SelectContent>
+                    <AddBasicItemModal
+                        itemKey={key}
+                        addedNew={addedNew}
+                        setAddedNew={setAddedNew}
+                    />
                     {options.map((option) => (
                         <SelectItem
                             key={option}
