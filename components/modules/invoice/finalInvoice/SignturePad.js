@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogHeader,
@@ -35,17 +36,25 @@ const SignturePad = ({ children, setUrl }) => {
                             canvasProps={{
                                 width: 400,
                                 height: 200,
-                                className: "sigCanvas border-2",
+                                className:
+                                    "sigCanvas border-2 border-[#1f1f1e]",
                             }}
                         />
                     </DialogTitle>
                     <DialogDescription className="flex justify-center gap-12">
-                        <Button onClick={clearHandler} variant="outlined">
-                            clear
+                        <Button
+                            onClick={clearHandler}
+                            variant="outlined"
+                            className=" text-black"
+                        >
+                            Clear
                         </Button>
-                        <Button onClick={saveHandler} variant="outlined">
-                            save
-                        </Button>
+                        <DialogClose
+                            onClick={saveHandler}
+                            className="px-3 text-black"
+                        >
+                            Save
+                        </DialogClose>
                     </DialogDescription>
                 </DialogHeader>
             </DialogContent>
