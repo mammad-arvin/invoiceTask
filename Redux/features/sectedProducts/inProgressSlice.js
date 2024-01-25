@@ -101,17 +101,25 @@ const inProgressSlice = createSlice({
                 Calculations(state);
             }
         },
+
+        getBasicInfo: (state, action) => {
+            state.basicInfo = { ...action.payload };
+            Calculations(state);
+        },
     },
 });
 
 export default inProgressSlice.reducer;
-export const { submitSelect, deleteProduct, editeSelectedProduct } =
-    inProgressSlice.actions;
+export const {
+    submitSelect,
+    deleteProduct,
+    editeSelectedProduct,
+    getBasicInfo,
+} = inProgressSlice.actions;
 
 export const selectSelectedProduct = (store) => store.inProgressReduce.selected;
 
 export const selectTotalOFSelectedProduct = (store) =>
     store.inProgressReduce.total;
 
-export const selectBasicInfoSelectedProduct = (store) =>
-    store.inProgressReduce.basicInfo;
+export const selectBasicInfo = (store) => store.inProgressReduce.basicInfo;

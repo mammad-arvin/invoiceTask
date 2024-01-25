@@ -1,3 +1,7 @@
+"use client";
+
+import { selectbasicInfoInitialValue } from "@/Redux/features/basicInfoInitialValue/basicInfoInitialValueSlice";
+import { getBasicInfo } from "@/Redux/features/sectedProducts/inProgressSlice";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -7,21 +11,39 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// style
+const optionDivStyle = "w-[22%] flex flex-col gap-2";
 
 const BasicInfo = () => {
-    const optionDivStyle = "w-[22%] flex flex-col gap-2";
+    const dispath = useDispatch();
 
-    const [description, setDescription] = useState("");
+    const {
+        costCenter,
+        marketer,
+        marketerShare,
+        discount,
+        client,
+        warehouse,
+        bin,
+    } = useSelector(selectbasicInfoInitialValue);
+
     const [optionsValue, setOptionsValue] = useState({
-        CostCenter: "",
-        Marketer: "",
-        MarketerShare: "",
-        Discount: "",
-        Client: "",
-        Warehouse: "",
-        Bin: "",
+        costCenter: "",
+        marketer: "",
+        marketerShare: "",
+        discount: "",
+        client: "",
+        warehouse: "",
+        bin: "",
+        description: "",
     });
+
+    useEffect(() => {
+        dispath(getBasicInfo(optionsValue));
+    }, [optionsValue]);
 
     const selectPotions = (placeholder, key, options) => {
         return (
@@ -57,51 +79,35 @@ const BasicInfo = () => {
             <div className="w-full flex justify-between">
                 <div className={optionDivStyle}>
                     <Label htmlFor="cost center">Cost Center</Label>
-                    {selectPotions("Delinternet", "CostCenter", [
-                        "Delinternet",
-                        "greatHearte",
-                        "upinternet",
-                    ])}
+                    {selectPotions("select", "costCenter", costCenter)}
                 </div>
                 <div className={optionDivStyle}>
                     <Label htmlFor="Marketer">Marketer</Label>
-                    {selectPotions("Terry Geidt", "Marketer", [
-                        "Terry Geidt",
-                        "Terry Geidt2",
-                        "Terry Geidt3",
-                    ])}
+                    {selectPotions("select", "marketer", marketer)}
                 </div>
                 <div className={optionDivStyle}>
                     <Label htmlFor="Marketer Share">Marketer Share</Label>
-                    {selectPotions("9%", "MarketerShare", ["9%", "36%", "15%"])}
+                    {selectPotions("select", "marketerShare", marketerShare)}
                 </div>
                 <div className={optionDivStyle}>
                     <Label htmlFor="Marketer Share">Discount</Label>
-                    {selectPotions("21%", "Discount", ["21%", "13%", "5%"])}
+                    {selectPotions("select", "discount", discount)}
                 </div>
             </div>
 
             <div className="w-full flex justify-between gap-4">
                 <div className={`w-[48%] flex flex-col gap-2`}>
                     <Label htmlFor="Client">Client</Label>
-                    {selectPotions("Raul Bento", "Client", [
-                        "Raul Bento",
-                        "Raul Bento2",
-                        "Raul Bento3",
-                    ])}
+                    {selectPotions("select", "client", client)}
                 </div>
                 <div className="w-[48%] flex justify-between">
                     <div className="w-[46%] flex flex-col gap-2">
                         <Label htmlFor="Warehouse">Warehouse</Label>
-                        {selectPotions("Delinternet", "Warehouse", [
-                            "Delinternet",
-                            "Delinternet2",
-                            "Delinternet3",
-                        ])}
+                        {selectPotions("select", "warehouse", warehouse)}
                     </div>
                     <div className="w-[46%] flex flex-col gap-2">
                         <Label htmlFor="Bin">Bin</Label>
-                        {selectPotions("A86", "Bin", ["A86", "A86 2", "A86 3"])}
+                        {selectPotions("select", "bin", bin)}
                     </div>
                 </div>
             </div>
@@ -112,8 +118,13 @@ const BasicInfo = () => {
                     id="description"
                     placeholder="Invoice description"
                     className="h-[32px] px-2 py-[6px] shadow-none"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={optionsValue.description}
+                    onChange={(e) =>
+                        setOptionsValue({
+                            ...optionsValue,
+                            description: e.target.value,
+                        })
+                    }
                 />
             </div>
         </div>
