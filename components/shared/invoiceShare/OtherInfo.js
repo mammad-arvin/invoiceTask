@@ -63,11 +63,15 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
                     </div>
                     <div className={flexStyle}>
                         <div className={leftTextStyle}>Total Weight</div>
-                        <div className={rightTextStyle}>{totalWeight} kg</div>
+                        <div className={rightTextStyle}>
+                            {totalWeight.toFixed(2)} kg
+                        </div>
                     </div>
                     <div className={flexStyle}>
                         <div className={leftTextStyle}>Taxes</div>
-                        <div className={rightTextStyle}>{taxes} €</div>
+                        <div className={rightTextStyle}>
+                            {taxes.toFixed(2)} €
+                        </div>
                     </div>
                     <div className={flexStyle}>
                         <p className={leftTextStyle}>Invoice Profit</p>
