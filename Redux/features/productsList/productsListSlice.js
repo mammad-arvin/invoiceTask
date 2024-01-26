@@ -2,11 +2,11 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
     products: [
-        { name: "Magnetic Paper", price: 24 },
-        { name: "Paper", price: 102 },
-        { name: "Easy Cheese", price: 107 },
-        { name: "Doritos", price: 64 },
-        { name: "Magnetic", price: 59 },
+        { name: "Magnetic Paper", price: 24, weight: 4 },
+        { name: "Paper", price: 102, weight: 5 },
+        { name: "Easy Cheese", price: 107, weight: 8.6 },
+        { name: "Doritos", price: 64, weight: 2 },
+        { name: "Magnetic", price: 59, weight: 3.4 },
     ],
     warehouse: ["Deltebre", "Rezaie", "Ahmadi"],
     bin: ["A89", "A44", "C21"],
