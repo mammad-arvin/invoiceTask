@@ -32,6 +32,20 @@ const SelectRow = () => {
         setSelected({ ...selected, total: +selected.qty * selected.price });
     }, [selected.qty]);
 
+    // give data of product
+    useEffect(() => {
+        productsList.products.map((item) => {
+            item.name === selected.product &&
+                setSelected({
+                    ...selected,
+                    price: item.price,
+                    weight: item.weight,
+                    totalWeight: item.weight,
+                    total: item.price,
+                });
+        });
+    }, [selected.product]);
+
     const disalbleBtns =
         selected.product &&
         selected.qty &&
@@ -45,17 +59,17 @@ const SelectRow = () => {
 
     const submitHandler = () => {
         dispatch(submitSelect(selected));
-        setSelected({ ...selected, product: "" });
+        setSelected({ bin: "", tax: "", warehouse: "", product: "" });
     };
 
     const cancelHandler = () => {
-        setSelected({});
+        setSelected({ bin: "", tax: "", warehouse: "", product: "" });
     };
 
     const createSelect = (key) => {
         return (
             <Select
-                defaultValue={selected[key]}
+                value={selected[key]}
                 onValueChange={(value) =>
                     setSelected({ ...selected, [key]: value })
                 }
@@ -100,16 +114,12 @@ const SelectRow = () => {
 
             <SelectTableCell className="w-[408px]">
                 <Select
-                    defaultValue={selected.product}
+                    value={selected.product}
                     onValueChange={(value) =>
                         setSelected({
                             ...selected,
-                            product: value.name,
+                            product: value,
                             qty: 1,
-                            price: value.price,
-                            weight: 3,
-                            totalWeight: 3,
-                            total: value.price,
                         })
                     }
                 >
@@ -120,7 +130,7 @@ const SelectRow = () => {
                         {productsList.products.map((product, index) => (
                             <SelectItem
                                 key={index}
-                                value={product}
+                                value={product.name}
                                 className={`text-[12px] text-[#040714] p-1 `}
                             >
                                 {product.name}
