@@ -83,7 +83,6 @@ const SelectRow = () => {
             <Input
                 type={text === "qty" ? "number" : "text"}
                 min={text === "qty" ? 1 : ""}
-                placeholder="write"
                 className="p-0 h-[25px]"
                 value={selected[text] || ""}
                 onChange={(e) =>
