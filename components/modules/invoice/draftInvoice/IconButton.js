@@ -4,22 +4,19 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import InProgress from "../InProgress/InProgress";
+import Link from "next/link";
 
-const IconButton = ({ text, icon, setPage }) => {
+const IconButton = ({ text, icon }) => {
     return (
         <Tooltip>
-            <TooltipTrigger
-                className="my-2 mx-3"
-                onClick={() =>
-                    text === "Edit" &&
-                    setPage({
-                        page: <InProgress />,
-                        pageName: "InProgress",
-                    })
-                }
-            >
-                {icon}
+            <TooltipTrigger className="my-2 mx-3">
+                <Link
+                    href={
+                        "/invoice/choose-a-template/configuration/new-invoice-page/in-progress-page"
+                    }
+                >
+                    {icon}
+                </Link>
             </TooltipTrigger>
             <TooltipContent>
                 <p>{text}</p>
