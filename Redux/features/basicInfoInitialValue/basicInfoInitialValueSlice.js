@@ -2,7 +2,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
     costCenter: ["Delinternet", "GreatHearte", "Upinternet"],
-    marketer: ["14", "2", "23"],
+    marketer: ["Elahi", "Sedigi", "Nikan"],
     marketerShare: [9, 13, 21, 10, 5],
     discount: [21, 13, 5, 7],
     client: ["Raul Bento", "Arvin", "Asal Rezaie"],

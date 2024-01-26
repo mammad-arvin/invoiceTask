@@ -36,11 +36,7 @@ const AddBasicItemModal = ({ itemKey, addedNew, setAddedNew }) => {
     };
 
     const changeHandler = (e) => {
-        if (
-            itemKey === "marketer" ||
-            itemKey === "discount" ||
-            itemKey === "marketerShare"
-        ) {
+        if (itemKey === "discount" || itemKey === "marketerShare") {
             setItem(+e.target.value);
         } else {
             setItem(e.target.value);
@@ -63,14 +59,12 @@ const AddBasicItemModal = ({ itemKey, addedNew, setAddedNew }) => {
                             <div>
                                 <Input
                                     type={
-                                        itemKey === "marketer" ||
                                         itemKey === "discount" ||
                                         itemKey === "marketerShare"
                                             ? "number"
                                             : "text"
                                     }
                                     min={
-                                        itemKey === "marketer" ||
                                         itemKey === "discount" ||
                                         itemKey === "marketerShare"
                                             ? 1
