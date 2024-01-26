@@ -1,5 +1,4 @@
 import PluseCycleSvg from "@/components/icons/PluseCycleSvg";
-import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
@@ -25,7 +24,7 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
     const { toast } = useToast();
 
     const [createdProduct, setCreatedProduct] = useState({
-        product: [{ name: "", price: "" }],
+        product: [{ name: "", price: "", weight: "" }],
         warehouse: "",
         bin: "",
         tax: "",
@@ -47,6 +46,13 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
                     { ...createdProduct.product[0], price: +e.target.value },
                 ],
             });
+        } else if (e.target.id === "weight") {
+            setCreatedProduct({
+                ...createdProduct,
+                product: [
+                    { ...createdProduct.product[0], weight: +e.target.value },
+                ],
+            });
         } else if (e.target.id === "tax") {
             setCreatedProduct({
                 ...createdProduct,
@@ -64,7 +70,7 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
         dispatch(addNewProduct(createdProduct));
         setAddedNew(!addedNew);
         setCreatedProduct({
-            product: [{ name: "", price: "" }],
+            product: [{ name: "", price: "", weight: "" }],
             warehouse: "",
             bin: "",
             tax: "",
@@ -135,19 +141,28 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
                             />
                         </div>
 
+                        <div>
+                            <Label htmlFor="weight">weight</Label>
+                            <Input
+                                type="number"
+                                id="weight"
+                                min={1}
+                                value={product[0].weight}
+                                onChange={changeHandler}
+                            />
+                        </div>
+
                         <div>{createInput("warehouse")}</div>
 
                         <div>{createInput("bin")}</div>
 
                         <div>{createInput("tax")}</div>
-                        <DialogClose disabled={disableBtn} className="mt-2">
-                            <Button
-                                className="w-full"
-                                disabled={disableBtn}
-                                onClick={createHandler}
-                            >
-                                Create
-                            </Button>
+                        <DialogClose
+                            disabled={disableBtn}
+                            className="mt-2 text-white p-1 rounded-lg bg-[#343434]"
+                            onClick={createHandler}
+                        >
+                            Create
                         </DialogClose>
                     </div>
                 </DialogHeader>
