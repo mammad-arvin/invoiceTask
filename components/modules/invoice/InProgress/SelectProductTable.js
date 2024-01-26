@@ -45,11 +45,11 @@ const SelectProductTable = () => {
                 <CreateTableHeader headers={tableHeaders} />
 
                 <TableBody className="w-full to-lowercase">
-                    <SelectRow headers={tableHeaders} />
-
                     {selectedProducts.map((item, index) => (
                         <TableRows key={index} item={item} id={index + 1} />
                     ))}
+
+                    <SelectRow headers={tableHeaders} />
                 </TableBody>
             </Table>
             {selectedProducts.length > 0 && <Calculations />}
