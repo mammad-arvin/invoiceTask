@@ -46,7 +46,7 @@ const AddBasicItemModal = ({ itemKey, addedNew, setAddedNew }) => {
     return (
         <div>
             <Dialog>
-                <DialogTrigger className="w-full flex justify-start items-center gap-1 text-[13px] text-[#2E5BFF] font-[510] leading-[15.51px] pl-1.5 py-2 ">
+                <DialogTrigger className="w-full flex justify-start items-center gap-1 md:text-[13px] 2xl:text-base text-[#2E5BFF] font-[510] leading-[15.51px] pl-1.5 py-2 ">
                     <PluseCycleSvg /> Create New
                 </DialogTrigger>
                 <DialogContent>

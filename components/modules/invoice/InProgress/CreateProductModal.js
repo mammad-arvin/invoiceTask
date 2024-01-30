@@ -109,7 +109,7 @@ const CreateProductModal = ({ setAddedNew, addedNew }) => {
 
     return (
         <Dialog>
-            <DialogTrigger className="flex justify-center items-center gap-1 text-[13px] text-[#2E5BFF] font-[510] leading-[15.51px] pr-2 ">
+            <DialogTrigger className="flex justify-center items-center gap-1 md:text-[13px] 2xl:text-base text-[#2E5BFF] font-[510] leading-[15.51px] pr-2 ">
                 <PluseCycleSvg /> Create New Product
             </DialogTrigger>
             <DialogContent>

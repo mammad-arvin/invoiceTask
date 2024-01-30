@@ -36,15 +36,15 @@ const btns = [
 
 const SideBarMenu = () => {
     return (
-        <div className="w-24 h-[1080px] px-4 py-6 border-r border-gray-200 flex-col justify-start items-center gap-10 inline-flex">
+        <div className=" md:w-[70px] lg:w-20 xl:w-24 h-[1080px] 2xl:h-[1380px] px-4 py-6 border-r border-gray-200 flex-col justify-start items-center gap-10 inline-flex">
             <GroupSvg />
 
             <div className="w-16 grow basis-0 flex-col justify-start items-start gap-4 flex">
                 {btns.map((btn, index) => (
-                    <Button key={index}>
+                    <Button key={index} className="2xl:h-[65px]">
                         {btn.icon}
                         <p
-                            className={`text-center text-xs leading-[14.32px]  ${
+                            className={`text-center md:text-[10px] lg:text-[11px] xl:text-xs 2xl:text-sm leading-[14.32px] ${
                                 index === 0
                                     ? "font-[500] font-['Inter']"
                                     : "font-[400]"
@@ -59,7 +59,7 @@ const SideBarMenu = () => {
             <div className="flex justify-center items-center">
                 <div
                     className={
-                        "text-center text-xs text-zinc-500 font-[400] leading-[14.32px]"
+                        "text-center md:text-[10px] lg:text-[11px] xl:text-xs  text-zinc-500 font-[400] leading-[14.32px]"
                     }
                 >
                     V 1.0.25

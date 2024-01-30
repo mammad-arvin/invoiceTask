@@ -5,6 +5,7 @@ const GroupSvg = () => {
             height="35"
             viewBox="0 0 26 35"
             fill="none"
+            className="2xl:w-8 2xl:h-11"
         >
             <g id="Group 139 2" clipPath="url(#clip0_54_145)">
                 <g id="Group 139">

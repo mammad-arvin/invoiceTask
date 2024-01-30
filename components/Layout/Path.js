@@ -14,7 +14,7 @@ const Path = () => {
             : splitedPath[splitedPath.length - 1].split("-").join(" ");
 
     return (
-        <div className="grow h-8  flex items-center gap-2 capitalize">
+        <div className="grow h-8  flex items-center gap-2 capitalize md:text-[11px] lg:text-[12px] xl:text-sm 2xl:text-[16px]">
             <div className="flex justify-start items-center gap-2">
                 <Button
                     onClick={() => back()}
@@ -25,10 +25,10 @@ const Path = () => {
                         <ArrowLeftSvg />
                     </div>
                 </Button>
-                <p className="text-gray-950 text-sm font-[510]">{pathTitle}</p>
+                <p className="text-gray-950 font-[510]">{pathTitle}</p>
             </div>
             <div className="w-px h-6 bg-gray-200"></div>
-            <div className="flex justify-start items-center gap-1 ">
+            <div className="flex justify-start items-center md:gap-[0px] lg:gap-[2px] xl:gap-1 ">
                 {splitedPath.map((path, index) => (
                     <div
                         key={index}
@@ -36,7 +36,7 @@ const Path = () => {
                             index === splitedPath.length - 1
                                 ? "text-blue-600"
                                 : "text-neutral-400"
-                        }  text-sm font-[400]`}
+                        } font-[400]`}
                     >
                         {path === ""
                             ? "home"

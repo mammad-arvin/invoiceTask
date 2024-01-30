@@ -14,17 +14,26 @@ import { selectSelectedProduct } from "@/Redux/features/sectedProducts/inProgres
 
 const SelectProductTable = () => {
     const tableHeaders = [
-        { text: "ID", width: "w-[41px] px-3" },
-        { text: "Product", width: "w-[408px] px-3" },
-        { text: "Qty", width: "w-[47px] px-3" },
-        { text: "Price", width: "w-[57px] px-3" },
-        { text: "Bundled Unit", width: "w-[106px] px-3" },
-        { text: "Warehouse", width: "w-[109px] px-3 text-center" },
-        { text: "Bin", width: "w-[66px] px-3 " },
-        { text: "Tax", width: "w-[86px] px-3" },
-        { text: "Description", width: "w-[97px] px-3" },
-        { text: "Total", width: "w-[87px] px-3" },
-        { text: "Actions", width: "w-[88px] px-3 text-center" },
+        { text: "ID", width: "xl:w-[41px] xl:px-3 md:px-1" },
+        { text: "Product", width: "xl:w-[408px] col-span-2 xl:px-3 md:px-1" },
+        { text: "Qty", width: "xl:w-[47px] xl:px-3 md:px-1" },
+        { text: "Price", width: "xl:w-[57px] xl:px-3 md:px-1" },
+        { text: "Bundled Unit", width: "xl:w-[106px] xl:px-3 md:px-1" },
+        {
+            text: "Warehouse",
+            width: "xl:w-[109px] xl:px-3 md:px-1 text-center",
+        },
+        {
+            text: "Bin",
+            width: "xl:w-[66px] xl:px-3 md:px-1 md:text-center lg:text-left",
+        },
+        { text: "Tax", width: "xl:w-[86px] xl:px-3 md:px-1" },
+        { text: "Description", width: "xl:w-[97px] xl:px-3 md:px-1" },
+        {
+            text: "Total",
+            width: "xl:w-[87px] xl:px-3 md:px-1 md:text-center lg:text-left",
+        },
+        { text: "Actions", width: "xl:w-[88px] xl:px-3 md:px-1 text-center" },
     ];
 
     // when a product create so component get new data

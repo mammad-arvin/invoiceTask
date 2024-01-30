@@ -3,20 +3,21 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 
 // styles
-const titleStyle = "text-[13px] leading-[15.51px] font-[400] text-zinc-500";
+const titleStyle =
+    "md:text-[12px] xl:text-[13px]  2xl:text-[16px] leading-[15.51px] font-[400] text-zinc-500";
 
-const desripStyle = "text-[13px] leading-[15.51px] font-[510] text-gray-950";
+const desripStyle =
+    "md:text-[12px] xl:text-[13px]  2xl:text-[16px] leading-[15.51px] font-[510] text-gray-950";
 
 const flexStyle = "flex justify-start items-center gap-4 ";
 
-const leftTextStyle = "w-[286px] text-zinc-500 text-[13px] leading-[15.51px] ";
+const leftTextStyle =
+    "md:w-[240px] lg:w-[286px] text-zinc-500 md:text-[12px] xl:text-[13px]  2xl:text-[16px] leading-[15.51px] ";
 
 const rightTextStyle =
-    "text-[13px] leading-[15.51px] font-[510] text-[#5E5E5E]";
+    "md:text-[12px] xl:text-[13px]  2xl:text-[16px] leading-[15.51px] font-[510] text-[#5E5E5E]";
 
-const OtherInfo = ({ draft, sign, signtureUrl }) => {
-    const signWidth = sign ? sign : "w-[561px]";
-
+const OtherInfo = ({ draft, finallSign, signtureUrl }) => {
     const { base, totalWeight, taxes, invoiceProfit, total } = useSelector(
         selectTotalOFSelectedProduct
     );
@@ -25,7 +26,7 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
         <div className="flex flex-col justify-start gap-4 ">
             {draft && (
                 <>
-                    <p className="text-gray-950 text-sm font-[510] leading-[16.71px] ">
+                    <p className="text-gray-950 text-sm 2xl:text-[16px] font-[510] leading-[16.71px] ">
                         Other Information
                     </p>
 
@@ -55,8 +56,8 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
                 </>
             )}
 
-            <div className="flex gap-4 ">
-                <div className="grow flex flex-col  gap-4 ">
+            <div className="flex justify-between gap-4 items-center">
+                <div className="w-[50%] flex flex-col gap-4">
                     <div className={flexStyle}>
                         <div className={leftTextStyle}>Base</div>
                         <div className={rightTextStyle}>{base} €</div>
@@ -75,21 +76,23 @@ const OtherInfo = ({ draft, sign, signtureUrl }) => {
                     </div>
                     <div className={flexStyle}>
                         <p className={leftTextStyle}>Invoice Profit</p>
-                        <p className="text-[13px] leading-[15.51px] font-[510] text-green-600 ">
+                        <p className="text-[13px] 2xl:text-[16px] leading-[15.51px] font-[510] text-green-600 ">
                             +{invoiceProfit} €
                         </p>
                     </div>
-                    <div className="flex gap-4 text-[13px] leading-[15.51px] ">
-                        <p className="w-[286px] font-[510] text-[#040714] ">
+                    <div className="flex gap-4 text-[13px] 2xl:text-[16px] leading-[15.51px] ">
+                        <p className="md:w-[240px] lg:w-[286px] font-[510] text-[#040714] ">
                             Total
                         </p>
                         <p className="font-[510] text-[#040714] ">{total} €</p>
                     </div>
                 </div>
                 <div
-                    className={`${signWidth} h-[144px]  p-4 rounded-lg border border-zinc-300 flex flex-col justify-start items-center gap-3`}
+                    className={`w-[50%] 2xl:w-[30%] ${
+                        finallSign && "w-[42.4%] 2xl:w-[42.4%]"
+                    }  h-[144px]  p-4 rounded-lg border border-zinc-300 flex flex-col justify-start items-center gap-3`}
                 >
-                    <p className="w-full text-gray-950 text-sm font-[510] leading-[16.71px] ">
+                    <p className="w-full text-gray-950 text-sm 2xl:text-[16px] font-[510] leading-[16.71px] ">
                         Client Signature
                     </p>
                     {signtureUrl && (

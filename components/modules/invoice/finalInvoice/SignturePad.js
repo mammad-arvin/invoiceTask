@@ -25,7 +25,11 @@ const SignturePad = ({ children, setUrl }) => {
 
     return (
         <Dialog>
-            <DialogTrigger className="w-[439px] h-[49px] flex justify-center items-center gap-2 text-[14px] font-[510] rounded-[8px] text-white bg-[#2E5BFF] hover:bg-blue-500">
+            <DialogTrigger
+                className="w-[48%] h-[49px] flex justify-center items-center
+                 gap-2 md:text-[14px] 2xl:text-base font-[510] rounded-[8px] text-white bg-[#2E5BFF]
+                  hover:bg-blue-500"
+            >
                 {children}
             </DialogTrigger>
             <DialogContent>

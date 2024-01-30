@@ -19,6 +19,10 @@ import { Button } from "@/components/ui/button";
 import { submitSelect } from "@/Redux/features/sectedProducts/inProgressSlice";
 import { Input } from "@/components/ui/input";
 
+// style
+const textResponsiveStyle =
+    "md:text-[11px] lg:text-[12px] xl:text-[13px] 2xl:text-[16px]";
+
 const SelectRow = () => {
     // list of product
     const productsList = useSelector((store) => store.productsList);
@@ -74,7 +78,9 @@ const SelectRow = () => {
                     setSelected({ ...selected, [key]: value })
                 }
             >
-                <SelectTrigger className="w-full px-0 h-[16px] text-[13px] border-none">
+                <SelectTrigger
+                    className={`w-full px-0 h-[16px] text-[13px] border-none ${textResponsiveStyle}`}
+                >
                     <SelectValue placeholder={"select"} />
                 </SelectTrigger>
                 <SelectContent>
@@ -82,7 +88,7 @@ const SelectRow = () => {
                         <SelectItem
                             key={index}
                             value={item}
-                            className={`text-[12px] text-[#040714] p-1 `}
+                            className={`md:text-[11px] lg:text-[12px] text-[#040714] p-1 `}
                         >
                             {item}
                         </SelectItem>
@@ -97,7 +103,7 @@ const SelectRow = () => {
             <Input
                 type={text === "qty" ? "number" : "text"}
                 min={text === "qty" ? 1 : ""}
-                className="p-0 h-[25px]"
+                className={`p-0 h-[25px] ${textResponsiveStyle}`}
                 value={selected[text] || ""}
                 onChange={(e) =>
                     text === "qty"
@@ -109,10 +115,15 @@ const SelectRow = () => {
     };
 
     return (
-        <TableRow className="w-full h-[40px] flex justify-between items-center bg-[#F1F4FC] hover:bg-[#F1F4FC] ">
-            <SelectTableCell className="w-[41px]">ID</SelectTableCell>
+        <TableRow
+            className="w-full h-[40px] md:grid md:grid-cols-12 xl:flex 2xl:grid
+             justify-between items-center bg-[#F1F4FC] hover:bg-[#F1F4FC] "
+        >
+            <SelectTableCell className="xl:w-[41px] md:col-span-1">
+                ID
+            </SelectTableCell>
 
-            <SelectTableCell className="w-[408px]">
+            <SelectTableCell className="xl:w-[408px] md:col-span-2 2xl:w-auto ">
                 <Select
                     value={selected.product}
                     onValueChange={(value) =>
@@ -123,7 +134,9 @@ const SelectRow = () => {
                         })
                     }
                 >
-                    <SelectTrigger className="w-full px-0 h-[16px] text-[13px] border-none">
+                    <SelectTrigger
+                        className={`w-full px-0 h-[16px] border-none ${textResponsiveStyle}`}
+                    >
                         <SelectValue placeholder="Select a product" />
                     </SelectTrigger>
                     <SelectContent>
@@ -131,7 +144,7 @@ const SelectRow = () => {
                             <SelectItem
                                 key={index}
                                 value={product.name}
-                                className={`text-[12px] text-[#040714] p-1 `}
+                                className={`md:text-[11px] lg:text-[12px] text-[#040714] p-1 `}
                             >
                                 {product.name}
                             </SelectItem>
@@ -140,34 +153,37 @@ const SelectRow = () => {
                 </Select>
             </SelectTableCell>
 
-            <SelectTableCell className="w-[47px] p-1">
+            <SelectTableCell className="xl:w-[47px] md:col-span-1 p-1">
                 {createInput("qty")}
             </SelectTableCell>
-            <SelectTableCell className="w-[57px]">
+            <SelectTableCell className="xl:w-[57px] md:col-span-1">
                 {selected.price ? selected.price + " €" : "-"}
             </SelectTableCell>
-            <SelectTableCell className="w-[106px] p-2">
+            <SelectTableCell className="xl:w-[106px] md:col-span-1 p-2">
                 {createInput("bundledUnit")}
             </SelectTableCell>
 
-            <SelectTableCell className="w-[109px]">
+            <SelectTableCell className="xl:w-[109px] md:col-span-1">
                 {createSelect("warehouse")}
             </SelectTableCell>
 
-            <SelectTableCell className={` w-[66px]`}>
+            <SelectTableCell className={` xl:w-[66px] md:col-span-1 `}>
                 {createSelect("bin")}
             </SelectTableCell>
-            <SelectTableCell className={` w-[86px] px-3 `}>
+            <SelectTableCell className={` xl:w-[86px] md:col-span-1 px-3 `}>
                 {createSelect("tax")}
             </SelectTableCell>
 
-            <SelectTableCell className="w-[97px] p-1">
+            <SelectTableCell className="xl:w-[97px] md:col-span-1 p-1">
                 {createInput("description")}
             </SelectTableCell>
-            <SelectTableCell className="w-[87px]">
+            <SelectTableCell className="xl:w-[87px] md:col-span-1 md:text-center lg:text-left">
                 {selected.total || "-"}
             </SelectTableCell>
-            <SelectTableCell className="w-[88px] flex justify-between items-center">
+            <SelectTableCell
+                className="xl:w-[88px] md:col-span-1 flex xl:justify-between 
+                    md:justify-center md:gap-2 2xl:gap-5 items-center"
+            >
                 <Button
                     variant="ghost"
                     disabled={!disalbleBtns}

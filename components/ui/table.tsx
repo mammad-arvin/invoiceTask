@@ -103,7 +103,7 @@ const SelectTableCell = React.forwardRef<
     <td
         ref={ref}
         className={cn(
-            " align-middle py-2 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] border-r border-[#E3E9FF] text-left text-[#040714] text-[13px] leading-[15.51px] font-[400] px-3 ",
+            " align-middle py-2 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] border-r border-[#E3E9FF] text-left text-[#040714] text-[13px] leading-[15.51px] font-[400] xl:px-3 md:px-1 md:text-[11px] lg:text-[12px] xl:text-[13px] 2xl:text-[16px] ",
             className
         )}
         {...props}
